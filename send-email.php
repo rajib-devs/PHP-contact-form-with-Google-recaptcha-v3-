@@ -1,8 +1,8 @@
 <?php
 // CONFIGURATION
 $secretKey = "YOUR_SECRET_KEY"; // Replace with your secret key from Google
-$to = "info@softclimax.com";
-$fromEmail = "website@softclimax.com";
+$to = "your@email.com";
+$fromEmail = "no-reply@yourdomain.com";
 
 // Validate required fields
 if (empty($_POST['contactPerson']) || empty($_POST['email']) || empty($_POST['g-recaptcha-response'])) {
