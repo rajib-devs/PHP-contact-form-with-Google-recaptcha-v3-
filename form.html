@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <!-- Replace YOUR_SITE_KEY with your actual site key -->
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+</head>
+<body>
+
+  <form method="post" action="send-email.php" id="contactForm" onsubmit="return executeRecaptcha(event)">
+    <input type="text" class="form-control mb-3" name="contactPerson" id="contactPerson" placeholder="Name" required>
+    <input type="email" class="form-control mb-3" name="email" id="email" placeholder="E-Mail" required>
+    <input type="number" class="form-control mb-3" name="number" id="contactNumber" placeholder="Contact Number" required>
+    <input type="text" class="form-control mb-3" name="subject" id="subject" placeholder="Subject">
+    <textarea class="form-control mb-3" rows="5" name="message" id="message" placeholder="Message" required></textarea>
+
+    <!-- Hidden input for reCAPTCHA token -->
+    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+
+    <button type="submit" class="form-control submit text-white soft-btn text-center m-auto">
+      Send Message <i class="bi bi-send"></i>
+    </button>
+  </form>
+
+  <script>
+    function executeRecaptcha(e) {
+      e.preventDefault();
+      grecaptcha.ready(function () {
+        grecaptcha.execute('YOUR_SITE_KEY', { action: 'submit' }).then(function (token) {
+          document.getElementById('g-recaptcha-response').value = token;
+          document.getElementById('contactForm').submit();
+        });
+      });
+      return false;
+    }
+  </script>
+
+</body>
+</html>
